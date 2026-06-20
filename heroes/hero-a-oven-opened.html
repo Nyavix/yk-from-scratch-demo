@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>From Scratch Bakeshop &amp; Boba — Yellowknife</title>
+  <meta name="description" content="Scratch-made Japanese breads, banh mì, croissants &amp; boba in Yellowknife. Baked fresh every morning by a family who does it right. 4.9★ · 135+ Google reviews.">
+
+  <!-- Brand tokens -->
+  <link rel="stylesheet" href="../css/tokens.css">
+
+  <!-- Google Fonts: Poppins (600, 700) + Inter (400, 500) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─────────────────────────────────────────
+       Reset & base
+    ───────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: var(--text-body);
+      line-height: var(--leading-body);
+      color: var(--color-ink);
+      background-color: var(--color-bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    /* ─────────────────────────────────────────
+       Focus-visible: skip default, show brand ring
+    ───────────────────────────────────────── */
+    :focus-visible {
+      outline: 3px solid var(--brand-amber);
+      outline-offset: 3px;
+      border-radius: var(--radius);
+    }
+
+    /* ─────────────────────────────────────────
+       Navigation
+    ───────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: var(--space-3) var(--space-8);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-6);
+      transition: background-color 300ms cubic-bezier(0.0, 0.0, 0.2, 1),
+                  box-shadow 300ms cubic-bezier(0.0, 0.0, 0.2, 1);
+    }
+
+    /* Filled state after scroll */
+    .nav.is-filled {
+      background-color: var(--brand-paper);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav__logo {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .nav__logo img {
+      height: 52px;
+      width: auto;
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: var(--space-8);
+      list-style: none;
+    }
+
+    .nav__links a {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: var(--text-body);
+      color: var(--brand-paper);
+      text-decoration: none;
+      transition: opacity 150ms ease-out;
+    }
+
+    .nav.is-filled .nav__links a {
+      color: var(--color-ink);
+    }
+
+    .nav__links a:hover,
+    .nav__links a:focus-visible {
+      opacity: 0.7;
+    }
+
+    .nav__cta {
+      flex-shrink: 0;
+    }
+
+    .btn-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: var(--space-2) var(--space-6);
+      border-radius: var(--radius-pill);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: var(--text-body);
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: transform 150ms ease-out, filter 150ms ease-out, background-color 150ms ease-out;
+    }
+
+    .btn-pill:hover {
+      transform: scale(1.02);
+      filter: brightness(1.07);
+    }
+
+    .btn-pill:active {
+      transform: scale(0.98);
+    }
+
+    .btn-amber {
+      background-color: var(--brand-amber);
+      color: var(--brand-paper);
+    }
+
+    /* Hamburger (mobile) */
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: var(--space-2);
+      min-width: 44px;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav__hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background-color: var(--brand-paper);
+      border-radius: 2px;
+      transition: background-color 300ms;
+    }
+
+    .nav.is-filled .nav__hamburger span {
+      background-color: var(--color-ink);
+    }
+
+    /* ─────────────────────────────────────────
+       Hero
+    ───────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Intentional branded background — warm amber→rose→cream gradient
+       Replace with real IG shokupan macro photo (Q5):
+       set background-image to url('../assets/hero-shokupan.jpg')
+       and adjust the overlay below. */
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      will-change: transform;
+      /* Parallax driven by JS — initial state */
+      background-color: var(--brand-cream);
+      background-image:
+        /* Soft warm vignette overlay */
+        radial-gradient(ellipse 80% 70% at 60% 40%, rgba(240, 144, 24, 0.13) 0%, transparent 70%),
+        radial-gradient(ellipse 70% 60% at 30% 60%, rgba(240, 168, 180, 0.22) 0%, transparent 65%),
+        /* Base warm gradient */
+        linear-gradient(145deg,
+          #f5e4d0 0%,
+          #fbd5dc 35%,
+          #fde8c8 65%,
+          #faf4ee 100%
+        );
+    }
+
+    /* <!-- replace with real IG shokupan macro photo (Q5) -->
+       When replacing: add a class like .hero__bg--photo, set background-image
+       to the photo, and add a warm amber overlay on top:
+       background-image: linear-gradient(rgba(250,244,238,0.30), rgba(250,244,238,0.30)),
+                         url('../assets/hero-shokupan.jpg');
+       background-size: cover;
+       background-position: center 30%;
+    */
+
+    /* Inline SVG bread line-art — rendered as bg via the svg element */
+    .hero__bread-art {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .hero__bread-art svg {
+      width: min(700px, 90vw);
+      height: auto;
+      opacity: 0.09;
+      margin-right: -4%;
+      margin-top: 4%;
+    }
+
+    /* Steam lines */
+    .hero__steam {
+      position: absolute;
+      bottom: 52%;
+      right: 22%;
+      display: flex;
+      gap: 14px;
+      pointer-events: none;
+    }
+
+    .steam-line {
+      width: 2px;
+      border-radius: 2px;
+      background: linear-gradient(to top, rgba(240, 168, 180, 0.5), transparent);
+      animation: steam-rise 2.6s ease-in-out infinite;
+    }
+
+    .steam-line:nth-child(1) { height: 38px; animation-delay: 0s; }
+    .steam-line:nth-child(2) { height: 52px; animation-delay: 0.4s; }
+    .steam-line:nth-child(3) { height: 30px; animation-delay: 0.8s; }
+
+    @keyframes steam-rise {
+      0%   { transform: translateY(0) scaleX(1); opacity: 0; }
+      20%  { opacity: 0.9; }
+      80%  { opacity: 0.4; }
+      100% { transform: translateY(-28px) scaleX(1.3); opacity: 0; }
+    }
+
+    /* Blob behind hero content — rose device */
+    .hero__blob {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(580px, 92vw);
+      height: min(340px, 60vw);
+      background-color: rgba(251, 227, 231, 0.45);
+      border-radius: 55% 45% 60% 40% / 48% 52% 48% 52%;
+      filter: blur(2px);
+      animation: blob-drift 7s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes blob-drift {
+      from { border-radius: 55% 45% 60% 40% / 48% 52% 48% 52%; }
+      to   { border-radius: 48% 52% 44% 56% / 55% 45% 55% 45%; }
+    }
+
+    /* Hero content */
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: var(--space-24) var(--space-6) var(--space-16);
+      max-width: 760px;
+      width: 100%;
+    }
+
+    /* Logo band — 20% cream tint behind logo */
+    .hero__logo-wrap {
+      display: inline-block;
+      background-color: rgba(252, 252, 252, 0.20);
+      border-radius: var(--radius-lg);
+      padding: var(--space-3) var(--space-6);
+      margin-bottom: var(--space-8);
+    }
+
+    .hero__logo {
+      height: 110px;
+      width: auto;
+      filter: drop-shadow(0 2px 12px rgba(26, 26, 26, 0.10));
+    }
+
+    .hero__h1 {
+      font-family: var(--font-display);
+      font-weight: var(--weight-display);
+      font-size: clamp(2.25rem, 5vw + 1rem, 4rem);
+      line-height: var(--leading-display);
+      color: var(--brand-ink);
+      margin-bottom: var(--space-4);
+      letter-spacing: -0.01em;
+    }
+
+    .hero__sub {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: clamp(1rem, 1.5vw + 0.5rem, var(--text-body-lg));
+      line-height: var(--leading-body);
+      color: var(--brand-ink-60);
+      margin-bottom: var(--space-8);
+    }
+
+    .hero__cta-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-6);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-8);
+    }
+
+    /* Badge — trust signal */
+    .hero__badge {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      background-color: rgba(252, 252, 252, 0.88);
+      border: 1px solid rgba(240, 168, 180, 0.35);
+      border-radius: var(--radius);
+      padding: var(--space-3) var(--space-4);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero__badge-stars {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--brand-amber-deep);
+      font-family: var(--font-display);
+      line-height: 1;
+    }
+
+    .hero__badge-label {
+      font-family: var(--font-body);
+      font-size: var(--text-caption);
+      color: var(--brand-ink-60);
+      line-height: 1.3;
+      text-align: center;
+    }
+
+    .hero__badge-claim {
+      font-family: var(--font-body);
+      font-size: var(--text-caption);
+      font-weight: 500;
+      color: var(--brand-ink);
+      line-height: 1.3;
+      text-align: center;
+    }
+
+    /* Scroll hint arrow */
+    .hero__scroll-hint {
+      position: absolute;
+      bottom: var(--space-6);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+      color: var(--brand-ink-60);
+      font-size: var(--text-caption);
+      font-family: var(--font-body);
+      animation: hint-bob 1.8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .hero__scroll-hint svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    @keyframes hint-bob {
+      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.6; }
+      50%       { transform: translateX(-50%) translateY(5px); opacity: 1; }
+    }
+
+    /* ─────────────────────────────────────────
+       Trust band
+    ───────────────────────────────────────── */
+    .trust-band {
+      background-color: var(--brand-rose-soft);
+      padding: var(--space-12) var(--space-6);
+    }
+
+    .trust-band__inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-8);
+    }
+
+    .trust-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--space-3);
+    }
+
+    .trust-item__icon {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      color: var(--brand-rose-deep);
+    }
+
+    .trust-item__text {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: var(--text-body);
+      color: var(--color-ink);
+      line-height: 1.35;
+    }
+
+    .trust-item__sub {
+      font-family: var(--font-body);
+      font-size: var(--text-caption);
+      color: var(--color-muted);
+    }
+
+    /* Divider between trust band items */
+    .trust-item + .trust-item {
+      border-left: 1px solid rgba(217, 130, 146, 0.25);
+      padding-left: var(--space-8);
+    }
+
+    /* ─────────────────────────────────────────
+       Motion — entrance animations
+    ───────────────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(16px);
+      transition:
+        opacity 400ms cubic-bezier(0.0, 0.0, 0.2, 1),
+        transform 400ms cubic-bezier(0.0, 0.0, 0.2, 1);
+    }
+
+    .fade-up.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stagger delays for hero sequence */
+    .fade-up--d1 { transition-delay: 80ms; }
+    .fade-up--d2 { transition-delay: 180ms; }
+    .fade-up--d3 { transition-delay: 300ms; }
+    .fade-up--d4 { transition-delay: 420ms; }
+    .fade-up--d5 { transition-delay: 540ms; }
+
+    /* Trust band items */
+    .trust-item {
+      opacity: 0;
+      transform: translateY(12px);
+      transition:
+        opacity 380ms cubic-bezier(0.0, 0.0, 0.2, 1),
+        transform 380ms cubic-bezier(0.0, 0.0, 0.2, 1);
+    }
+
+    .trust-item.is-visible { opacity: 1; transform: translateY(0); }
+    .trust-item:nth-child(2) { transition-delay: 80ms; }
+    .trust-item:nth-child(3) { transition-delay: 160ms; }
+
+    /* ─────────────────────────────────────────
+       Reduced motion
+    ───────────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up,
+      .trust-item {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      .blob-drift,
+      .hero__blob { animation: none; }
+
+      .steam-line  { animation: none; opacity: 0.5; }
+      .hero__scroll-hint { animation: none; }
+
+      * {
+        transition-duration: 80ms !important;
+        animation-duration: 80ms !important;
+      }
+    }
+
+    /* ─────────────────────────────────────────
+       Mobile responsive
+    ───────────────────────────────────────── */
+    @media (max-width: 720px) {
+      .nav {
+        padding: var(--space-3) var(--space-4);
+      }
+
+      .nav__links {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        background-color: var(--brand-paper);
+        flex-direction: column;
+        gap: 0;
+        padding-top: 72px;
+        padding-bottom: var(--space-8);
+        box-shadow: var(--shadow-md);
+        z-index: 90;
+      }
+
+      .nav__links.is-open {
+        display: flex;
+      }
+
+      .nav__links li {
+        width: 100%;
+      }
+
+      .nav__links a {
+        display: block;
+        padding: var(--space-4) var(--space-8);
+        color: var(--color-ink);
+        font-size: var(--text-body-lg);
+        border-bottom: 1px solid rgba(240, 168, 180, 0.20);
+      }
+
+      .nav__hamburger {
+        display: flex;
+      }
+
+      .nav__cta {
+        display: none;
+      }
+
+      .hero__logo {
+        height: 88px;
+      }
+
+      .hero__steam {
+        right: 12%;
+      }
+
+      .trust-band__inner {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+      }
+
+      .trust-item + .trust-item {
+        border-left: none;
+        border-top: 1px solid rgba(217, 130, 146, 0.25);
+        padding-left: 0;
+        padding-top: var(--space-6);
+      }
+    }
+
+    @media (min-width: 721px) and (max-width: 1024px) {
+      .hero__logo {
+        height: 96px;
+      }
+    }
+
+    /* ─────────────────────────────────────────
+       Utility: skip link for a11y
+    ───────────────────────────────────────── */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: var(--space-4);
+      background: var(--brand-amber);
+      color: var(--brand-paper);
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius);
+      font-weight: 600;
+      text-decoration: none;
+      z-index: 9999;
+      transition: top 200ms;
+    }
+
+    .skip-link:focus {
+      top: var(--space-4);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Skip to content (accessibility) -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- ─────────────────────────────────────
+       Navigation
+  ───────────────────────────────────────── -->
+  <nav class="nav" id="site-nav" aria-label="Site navigation">
+    <a class="nav__logo" href="/" aria-label="From Scratch Bakeshop &amp; Boba — home">
+      <img
+        src="../assets/Logo_From_scratch.png"
+        alt="From Scratch Bakeshop &amp; Boba"
+        width="52"
+        height="52"
+      >
+    </a>
+
+    <!-- Hamburger (mobile) -->
+    <button
+      class="nav__hamburger"
+      id="nav-toggle"
+      aria-controls="nav-menu"
+      aria-expanded="false"
+      aria-label="Open menu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav__links" id="nav-menu" role="list">
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#story">Story</a></li>
+      <li><a href="#visit">Visit</a></li>
+    </ul>
+
+    <a class="btn-pill btn-amber nav__cta" href="#menu">Order</a>
+  </nav>
+
+  <!-- ─────────────────────────────────────
+       Hero
+  ───────────────────────────────────────── -->
+  <main id="main-content">
+    <section class="hero" aria-label="Hero">
+
+      <!-- Background: intentional branded treatment (warm amber→rose→cream gradient
+           with faint line-art and steam). No real photo yet. -->
+      <!-- replace with real IG shokupan macro photo (Q5) -->
+      <div class="hero__bg" id="hero-bg" aria-hidden="true"></div>
+
+      <!-- Large faint bread line-art — single continuous stroke, Ink style -->
+      <div class="hero__bread-art" aria-hidden="true">
+        <!--
+          Bread line-art: a single-stroke loaf of shokupan (Japanese milk bread).
+          Drawn as one continuous path — no fills, no closed shapes.
+          Matches the logo's line-art aesthetic.
+        -->
+        <svg
+          viewBox="0 0 560 440"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          role="img"
+          aria-label="Line drawing of a loaf of bread"
+        >
+          <!-- Single continuous stroke: shokupan loaf + wheat ear accent -->
+          <path
+            d="
+              M 60 310
+              Q 50 310 48 290
+              Q 44 240 70 200
+              Q 80 182 100 172
+              Q 106 169 100 155
+              Q 92 132 112 118
+              Q 130 106 152 114
+              Q 162 118 165 108
+              Q 174 78 200 66
+              Q 228 54 258 60
+              Q 288 66 306 80
+              Q 316 88 326 80
+              Q 348 62 378 66
+              Q 408 70 420 94
+              Q 426 108 434 108
+              Q 454 106 466 122
+              Q 480 140 474 164
+              Q 472 174 482 180
+              Q 504 196 510 224
+              Q 516 252 510 280
+              Q 506 300 494 308
+              Q 490 310 490 316
+              L 490 348
+              Q 490 360 478 362
+              L 78 362
+              Q 64 360 62 346
+              L 62 316
+              Q 62 312 60 310
+              Z
+
+              M 80 316 L 472 316
+
+              M 160 180
+              Q 180 140 220 130
+              Q 260 120 300 132
+              Q 340 144 360 180
+
+              M 190 250
+              Q 210 240 230 248
+              Q 250 256 268 248
+              Q 286 240 306 248
+              Q 326 256 348 248
+              Q 366 242 380 250
+
+              M 120 200 Q 110 220 108 240 Q 106 260 114 280
+
+              M 430 200 Q 440 220 442 240 Q 444 260 436 280
+
+              M 264 80
+              L 264 60
+              Q 264 48 268 36
+              L 276 12
+              Q 278 6 282 12
+              L 290 36
+              Q 294 48 294 60
+              L 294 80
+
+              M 276 12
+              Q 266 8 258 14
+              Q 250 20 248 30
+
+              M 282 12
+              Q 292 8 300 14
+              Q 308 20 310 30
+
+              M 276 36
+              Q 266 34 260 40
+              Q 256 46 258 54
+
+              M 282 36
+              Q 292 34 298 40
+              Q 302 46 300 54
+            "
+            stroke="var(--brand-ink)"
+            stroke-width="3.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </div>
+
+      <!-- Steam lines (decorative) -->
+      <div class="hero__steam" aria-hidden="true">
+        <div class="steam-line"></div>
+        <div class="steam-line"></div>
+        <div class="steam-line"></div>
+      </div>
+
+      <!-- Rose blob background device -->
+      <div class="hero__blob" aria-hidden="true"></div>
+
+      <!-- Hero text content -->
+      <div class="hero__content">
+
+        <!-- Logo -->
+        <div class="hero__logo-wrap fade-up fade-up--d1">
+          <img
+            class="hero__logo"
+            src="../assets/Logo_From_scratch.png"
+            alt="From Scratch Bakeshop &amp; Boba"
+            width="110"
+            height="110"
+          >
+        </div>
+
+        <!-- H1 — one per page -->
+        <h1 class="hero__h1 fade-up fade-up--d2">
+          Baked by hand.<br>Every morning.
+        </h1>
+
+        <!-- Sub-line -->
+        <p class="hero__sub fade-up fade-up--d3">
+          Shokupan, banh mì, croissants &amp; boba — in Yellowknife.
+        </p>
+
+        <!-- CTA + badge row -->
+        <div class="hero__cta-row fade-up fade-up--d4">
+          <a class="btn-pill btn-amber" href="#menu">See the menu</a>
+
+          <!-- Trust badge: above-the-fold social proof (R2) -->
+          <div class="hero__badge" role="complementary" aria-label="Customer rating">
+            <div class="hero__badge-stars">★ 4.9 · 135+ Google reviews</div>
+            <div class="hero__badge-claim">Yellowknife's highest-rated bakery</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Scroll hint -->
+      <div class="hero__scroll-hint" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ───────────────────────────────────────
+         Trust band — 3 quick proof points
+    ─────────────────────────────────────────── -->
+    <section class="trust-band" aria-label="About From Scratch" id="about">
+      <div class="trust-band__inner">
+
+        <div class="trust-item">
+          <!-- Line-art: mixing bowl / from-scratch icon -->
+          <svg class="trust-item__icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M8 28 Q6 28 6 24 Q6 14 22 12 Q38 14 38 24 Q38 28 36 28 L8 28 Z"/>
+            <path d="M8 28 Q10 38 22 38 Q34 38 36 28"/>
+            <path d="M16 12 Q16 8 22 7 Q28 8 28 12"/>
+            <line x1="22" y1="7" x2="22" y2="4"/>
+          </svg>
+          <div class="trust-item__text">Made from scratch daily</div>
+          <div class="trust-item__sub">No frozen. No pre-made. Baked fresh every morning.</div>
+        </div>
+
+        <div class="trust-item">
+          <!-- Line-art: house / family icon -->
+          <svg class="trust-item__icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="4 22 22 6 40 22"/>
+            <path d="M10 22 L10 38 L20 38 L20 30 L24 30 L24 38 L34 38 L34 22"/>
+            <circle cx="22" cy="30" r="2.5"/>
+          </svg>
+          <div class="trust-item__text">Family-run since 2024</div>
+          <div class="trust-item__sub">Ann and Cong — a family behind every loaf.</div>
+        </div>
+
+        <div class="trust-item">
+          <!-- Line-art: delivery bag icon -->
+          <svg class="trust-item__icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="8" y="18" width="28" height="22" rx="4"/>
+            <path d="M16 18 Q16 10 22 10 Q28 10 28 18"/>
+            <circle cx="16" cy="30" r="2"/>
+            <circle cx="28" cy="30" r="2"/>
+            <path d="M19 30 L25 30"/>
+          </svg>
+          <div class="trust-item__text">On DoorDash &amp; Uber Eats</div>
+          <div class="trust-item__sub">Order for delivery — or pop by Centre Square Mall.</div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ─────────────────────────────────────
+       Footer (minimal — mockup context)
+  ───────────────────────────────────────── -->
+  <footer style="
+    background-color: var(--brand-cream);
+    padding: var(--space-12) var(--space-8);
+    text-align: center;
+    border-top: 1px solid rgba(240,168,180,0.25);
+  " id="visit">
+    <p style="
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: var(--text-h3);
+      color: var(--color-ink);
+      margin-bottom: var(--space-3);
+      line-height: var(--leading-h3);
+    ">Unit 3, Centre Square Mall</p>
+    <p style="
+      font-family: var(--font-body);
+      color: var(--color-muted);
+      font-size: var(--text-body);
+      margin-bottom: var(--space-2);
+    ">4907 Franklin Ave, Yellowknife NT</p>
+    <p style="
+      font-family: var(--font-body);
+      color: var(--color-muted);
+      font-size: var(--text-body);
+      margin-bottom: var(--space-2);
+    ">Mon–Fri 10am–6pm &nbsp;·&nbsp; Sat–Sun 12–6pm</p>
+    <p style="
+      font-family: var(--font-body);
+      color: var(--color-muted);
+      font-size: var(--text-body);
+    "><a href="tel:+18676869986" style="color: var(--brand-rose-deep); text-decoration: none;">(867) 686-9986</a></p>
+  </footer>
+
+  <script>
+    /* ─────────────────────────────────────
+       Nav scroll fill
+    ───────────────────────────────────────── */
+    (function () {
+      const nav = document.getElementById('site-nav');
+      let ticking = false;
+
+      function updateNav() {
+        if (window.scrollY > 40) {
+          nav.classList.add('is-filled');
+        } else {
+          nav.classList.remove('is-filled');
+        }
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          window.requestAnimationFrame(updateNav);
+          ticking = true;
+        }
+      }, { passive: true });
+    })();
+
+    /* ─────────────────────────────────────
+       Parallax on hero background (~0.6x)
+    ───────────────────────────────────────── */
+    (function () {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) return;
+
+      const heroBg = document.getElementById('hero-bg');
+      let ticking = false;
+
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          window.requestAnimationFrame(function () {
+            const y = window.scrollY;
+            heroBg.style.transform = 'translateY(' + (y * 0.38) + 'px)';
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+    })();
+
+    /* ─────────────────────────────────────
+       Mobile nav toggle
+    ───────────────────────────────────────── */
+    (function () {
+      const toggle = document.getElementById('nav-toggle');
+      const menu = document.getElementById('nav-menu');
+      const nav = document.getElementById('site-nav');
+
+      toggle.addEventListener('click', function () {
+        const isOpen = menu.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+        // Ensure nav is filled while menu is open
+        if (isOpen) nav.classList.add('is-filled');
+        else if (window.scrollY <= 40) nav.classList.remove('is-filled');
+      });
+
+      // Close on link click
+      menu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          menu.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', 'Open menu');
+        });
+      });
+    })();
+
+    /* ─────────────────────────────────────
+       Scroll-enter animations (IntersectionObserver)
+    ───────────────────────────────────────── */
+    (function () {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Trigger hero elements on load (immediate)
+      const heroEls = document.querySelectorAll('.hero .fade-up');
+      if (prefersReduced) {
+        heroEls.forEach(function (el) { el.classList.add('is-visible'); });
+      } else {
+        // Small RAF delay so transition fires
+        window.requestAnimationFrame(function () {
+          window.requestAnimationFrame(function () {
+            heroEls.forEach(function (el) { el.classList.add('is-visible'); });
+          });
+        });
+      }
+
+      // Trust band items — reveal on scroll
+      const trustItems = document.querySelectorAll('.trust-item');
+      if (!prefersReduced && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2 });
+
+        trustItems.forEach(function (item) { io.observe(item); });
+      } else {
+        trustItems.forEach(function (item) { item.classList.add('is-visible'); });
+      }
+    })();
+  </script>
+</body>
+</html>

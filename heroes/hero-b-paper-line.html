@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="From Scratch Bakeshop &amp; Boba — scratch-made Japanese breads, Vietnamese banh mì, and boba in Yellowknife, NT. Baked fresh every morning.">
+  <title>From Scratch Bakeshop &amp; Boba — Yellowknife</title>
+
+  <!-- Brand tokens -->
+  <link rel="stylesheet" href="../css/tokens.css">
+
+  <!-- Google Fonts: Poppins + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── Reset & base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--brand-paper);
+      color: var(--brand-ink);
+      font-family: var(--font-body);
+      font-size: var(--text-body);
+      line-height: var(--leading-body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Focus visible ─── */
+    :focus-visible {
+      outline: 2.5px solid var(--brand-amber);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* ─── Sticky nav ─── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--brand-paper);
+      border-bottom: 1px solid rgba(26,26,26,0.07);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-3) var(--space-8);
+      height: 64px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-logo img {
+      height: 42px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: var(--space-8);
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: var(--text-caption);
+      letter-spacing: var(--tracking-label);
+      text-transform: uppercase;
+      color: var(--brand-ink);
+      text-decoration: none;
+      transition: color 150ms ease-out;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .nav-links a:hover { color: var(--brand-rose-deep); }
+
+    .nav-order {
+      background: var(--brand-amber);
+      color: var(--brand-paper);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: var(--text-caption);
+      letter-spacing: var(--tracking-label);
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0 var(--space-6);
+      height: 44px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      transition: background 150ms ease-out, transform 150ms ease-out;
+    }
+
+    .nav-order:hover {
+      background: var(--brand-amber-deep);
+      transform: scale(1.02);
+    }
+
+    .nav-order:active { transform: scale(0.98); }
+
+    /* ─── Hero layout ─── */
+    .hero {
+      min-height: calc(100svh - 64px);
+      padding: var(--space-12) var(--space-8);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: var(--space-12);
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* ─── Left column: blob + logo ─── */
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .blob-wrap {
+      position: relative;
+      width: clamp(260px, 40vw, 440px);
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* The SVG blob sits as a background layer */
+    .blob-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      transform-origin: center center;
+      /* animation applied via JS after load */
+    }
+
+    .hero-logo {
+      position: relative;
+      z-index: 2;
+      width: clamp(140px, 22vw, 200px);
+      height: auto;
+      display: block;
+    }
+
+    /* ─── Scattered line-art icons ─── */
+    .icon-scatter {
+      position: absolute;
+      inset: -40px;
+      pointer-events: none;
+    }
+
+    .line-icon {
+      position: absolute;
+      overflow: visible;
+    }
+
+    /* icon positions */
+    .icon-bread   { top: 4%; left: -8%; }
+    .icon-boba    { top: 6%; right: -6%; }
+    .icon-croissant { bottom: 8%; left: -5%; }
+    .icon-banhmi  { bottom: 4%; right: -7%; }
+
+    /* ─── Right column: headline + CTA ─── */
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-8);
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: var(--text-label);
+      letter-spacing: var(--tracking-label);
+      text-transform: uppercase;
+      color: var(--brand-rose-deep);
+    }
+
+    .hero-h1 {
+      font-family: var(--font-display);
+      font-weight: var(--weight-display);
+      font-size: clamp(3rem, 5.5vw, 4.5rem);
+      line-height: 1.0;
+      color: var(--brand-ink);
+      letter-spacing: -0.01em;
+    }
+
+    /* each word on its own line, animated separately */
+    .hero-h1 .line {
+      display: block;
+    }
+
+    .hero-h1 .line-scratch {
+      color: var(--brand-rose-deep);
+    }
+
+    .hero-sub {
+      font-family: var(--font-body);
+      font-size: var(--text-body-lg);
+      color: var(--brand-ink-60);
+      line-height: 1.55;
+      max-width: 32ch;
+    }
+
+    .hero-cta {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.0625rem;
+      color: var(--brand-amber-deep);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      min-height: 44px;
+      transition: color 150ms ease-out, gap 150ms ease-out;
+      border-bottom: 2px solid var(--brand-amber-soft);
+      padding-bottom: 2px;
+    }
+
+    .hero-cta:hover {
+      color: var(--brand-amber);
+      gap: var(--space-3);
+      border-bottom-color: var(--brand-amber);
+    }
+
+    .hero-cta-arrow {
+      font-style: normal;
+      transition: transform 150ms ease-out;
+    }
+
+    .hero-cta:hover .hero-cta-arrow {
+      transform: translateX(4px);
+    }
+
+    /* ─── Animation states (JS adds .animated class) ─── */
+
+    /* blob: starts at 0.9, transitions to 1.0 */
+    .blob-svg {
+      transform: scale(0.9);
+    }
+
+    .blob-svg.animate-blob {
+      animation: blob-settle 600ms cubic-bezier(0.0, 0.0, 0.2, 1) forwards;
+    }
+
+    @keyframes blob-settle {
+      from { transform: scale(0.9); opacity: 0.6; }
+      to   { transform: scale(1.0); opacity: 1.0; }
+    }
+
+    /* blob slow drift (after settle) */
+    .blob-svg.drifting {
+      animation: blob-drift 7s ease-in-out infinite alternate;
+    }
+
+    @keyframes blob-drift {
+      from { transform: translate(0, 0) scale(1.0); }
+      to   { transform: translate(4px, -4px) scale(1.0); }
+    }
+
+    /* headline line fade-up */
+    .hero-eyebrow,
+    .hero-h1 .line,
+    .hero-sub,
+    .hero-cta {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    .hero-eyebrow.fade-up,
+    .hero-h1 .line.fade-up,
+    .hero-sub.fade-up,
+    .hero-cta.fade-up {
+      animation: fade-up 450ms cubic-bezier(0.0, 0.0, 0.2, 1) forwards;
+    }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* line-draw icons: default hidden stroke state */
+    .line-icon path,
+    .line-icon circle,
+    .line-icon line,
+    .line-icon polyline,
+    .line-icon rect {
+      stroke-dasharray: var(--dash-len, 300);
+      stroke-dashoffset: var(--dash-len, 300);
+    }
+
+    .line-icon.draw path,
+    .line-icon.draw circle,
+    .line-icon.draw line,
+    .line-icon.draw polyline,
+    .line-icon.draw rect {
+      animation: line-draw var(--draw-dur, 900ms) linear forwards;
+    }
+
+    @keyframes line-draw {
+      from { stroke-dashoffset: var(--dash-len, 300); }
+      to   { stroke-dashoffset: 0; }
+    }
+
+    /* ─── Product strip ─── */
+    .product-strip {
+      background: var(--brand-cream);
+      padding: var(--space-12) var(--space-8);
+    }
+
+    .product-strip-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .product-strip-label {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: var(--text-label);
+      letter-spacing: var(--tracking-label);
+      text-transform: uppercase;
+      color: var(--brand-ink-60);
+      margin-bottom: var(--space-6);
+    }
+
+    .product-tiles {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--space-4);
+    }
+
+    .product-tile {
+      aspect-ratio: 1;
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, var(--brand-rose-soft) 0%, var(--brand-amber-soft) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-sm);
+
+      /* scroll-in state */
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 350ms cubic-bezier(0.0, 0.0, 0.2, 1),
+                  transform 350ms cubic-bezier(0.0, 0.0, 0.2, 1),
+                  box-shadow 150ms ease-out;
+    }
+
+    .product-tile:hover {
+      box-shadow: var(--shadow-rose);
+      transform: scale(1.02) translateY(0);
+    }
+
+    .product-tile.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .product-tile svg {
+      opacity: 0.45;
+    }
+
+    .product-tile-label {
+      position: absolute;
+      bottom: var(--space-3);
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: var(--text-caption);
+      color: var(--brand-ink);
+    }
+
+    /* ─── Info strip ─── */
+    .info-strip {
+      padding: var(--space-8);
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-8);
+      align-items: flex-start;
+      justify-content: space-between;
+      border-top: 1px solid rgba(26,26,26,0.08);
+    }
+
+    .info-block {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+
+    .info-label {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: var(--text-label);
+      letter-spacing: var(--tracking-label);
+      text-transform: uppercase;
+      color: var(--brand-ink-60);
+    }
+
+    .info-value {
+      font-size: var(--text-body);
+      color: var(--brand-ink);
+    }
+
+    .info-value a {
+      color: var(--brand-ink);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .stars {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-body-lg);
+      font-weight: 600;
+    }
+
+    .star-glyph { color: var(--brand-amber); }
+
+    /* ─── Mobile ─── */
+    @media (max-width: 720px) {
+      .nav {
+        padding: var(--space-3) var(--space-4);
+      }
+
+      .nav-links {
+        display: none; /* full nav hidden on mobile — hamburger out of scope */
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: var(--space-8) var(--space-4);
+        gap: var(--space-8);
+        min-height: auto;
+      }
+
+      .hero-visual {
+        order: 1;
+      }
+
+      .hero-text {
+        order: 2;
+      }
+
+      .blob-wrap {
+        width: clamp(200px, 70vw, 300px);
+      }
+
+      .hero-logo {
+        width: clamp(110px, 38vw, 160px);
+      }
+
+      .icon-bread   { top: 2%; left: -12%; }
+      .icon-boba    { top: 2%; right: -10%; }
+      .icon-croissant { bottom: 2%; left: -10%; }
+      .icon-banhmi  { bottom: 2%; right: -10%; }
+
+      .product-tiles {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-3);
+      }
+
+      .product-tile:nth-child(n+4) {
+        display: none; /* show 3 tiles on mobile */
+      }
+
+      .info-strip {
+        padding: var(--space-6) var(--space-4);
+        gap: var(--space-6);
+      }
+    }
+
+    /* ─── Reduced motion ─── */
+    @media (prefers-reduced-motion: reduce) {
+      .blob-svg {
+        transform: scale(1.0) !important;
+        opacity: 1 !important;
+        animation: none !important;
+      }
+
+      .hero-eyebrow,
+      .hero-h1 .line,
+      .hero-sub,
+      .hero-cta {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+      }
+
+      .line-icon path,
+      .line-icon circle,
+      .line-icon line,
+      .line-icon polyline,
+      .line-icon rect {
+        stroke-dashoffset: 0 !important;
+        animation: none !important;
+      }
+
+      .product-tile {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: box-shadow 150ms ease-out !important;
+      }
+
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── Sticky nav ─── -->
+  <header>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#" class="nav-logo" aria-label="From Scratch Bakeshop & Boba — home">
+        <img src="../assets/Logo_From_scratch.png" alt="From Scratch logo" height="42">
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#story">Story</a></li>
+        <li><a href="#visit">Visit</a></li>
+      </ul>
+      <a href="https://www.doordash.com" class="nav-order" rel="noopener noreferrer">
+        Order
+      </a>
+    </nav>
+  </header>
+
+  <!-- ─── Hero ─── -->
+  <main>
+    <section class="hero" aria-label="Hero">
+
+      <!-- LEFT: blob + logo + scattered icons -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="blob-wrap">
+
+          <!-- Scattered line-art icons around the blob -->
+          <div class="icon-scatter" aria-hidden="true">
+
+            <!-- Bread loaf icon -->
+            <svg class="line-icon icon-bread"
+                 width="72" height="72" viewBox="0 0 72 72"
+                 fill="none"
+                 style="--dash-len:380; --draw-dur:950ms;"
+                 aria-hidden="true">
+              <path
+                d="M10 44 C10 28 20 18 36 18 C52 18 62 28 62 44 L62 54 Q62 58 58 58 L14 58 Q10 58 10 54 Z"
+                stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path
+                d="M18 58 L18 52 Q18 48 22 48 L50 48 Q54 48 54 52 L54 58"
+                stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path
+                d="M24 40 Q28 34 36 34 Q44 34 48 40"
+                stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <path
+                d="M30 30 Q32 24 36 22"
+                stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"/>
+              <path
+                d="M40 29 Q42 23 40 18"
+                stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+
+            <!-- Boba cup icon -->
+            <svg class="line-icon icon-boba"
+                 width="68" height="80" viewBox="0 0 68 80"
+                 fill="none"
+                 style="--dash-len:400; --draw-dur:1000ms;"
+                 aria-hidden="true">
+              <!-- straw -->
+              <line x1="34" y1="4" x2="34" y2="28"
+                    stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+              <!-- straw bend -->
+              <path d="M34 28 Q34 34 28 34"
+                    stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <!-- cup body -->
+              <path d="M14 34 L18 68 Q18 72 34 72 Q50 72 50 68 L54 34 Z"
+                    stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- lid -->
+              <path d="M10 34 Q10 28 34 28 Q58 28 58 34 L14 34 Z"
+                    stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- pearls -->
+              <circle cx="26" cy="60" r="4" stroke="#1A1A1A" stroke-width="2"/>
+              <circle cx="34" cy="64" r="4" stroke="#1A1A1A" stroke-width="2"/>
+              <circle cx="42" cy="60" r="4" stroke="#1A1A1A" stroke-width="2"/>
+            </svg>
+
+            <!-- Croissant icon -->
+            <svg class="line-icon icon-croissant"
+                 width="80" height="64" viewBox="0 0 80 64"
+                 fill="none"
+                 style="--dash-len:360; --draw-dur:880ms;"
+                 aria-hidden="true">
+              <path d="M8 48 Q14 20 32 18 Q40 16 40 32 Q40 16 48 18 Q66 20 72 48 L58 42 Q50 38 40 32 Q30 38 22 42 Z"
+                    stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M28 36 Q34 28 40 32 Q46 28 52 36"
+                    stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            </svg>
+
+            <!-- Banh mì icon -->
+            <svg class="line-icon icon-banhmi"
+                 width="90" height="56" viewBox="0 0 90 56"
+                 fill="none"
+                 style="--dash-len:420; --draw-dur:980ms;"
+                 aria-hidden="true">
+              <!-- bun top -->
+              <path d="M10 30 Q10 10 45 10 Q80 10 80 30 Z"
+                    stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- bun bottom -->
+              <path d="M8 32 L82 32 Q82 44 45 44 Q8 44 8 32 Z"
+                    stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- filling lines -->
+              <path d="M18 32 Q24 26 30 32 Q36 26 42 32 Q48 26 54 32 Q60 26 66 32 Q72 26 76 32"
+                    stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+              <!-- sesame seeds on top -->
+              <path d="M32 18 Q33 16 34 18" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M42 14 Q43 12 44 14" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M52 18 Q53 16 54 18" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+
+          <!-- Rose blob SVG -->
+          <svg class="blob-svg" viewBox="0 0 440 440"
+               xmlns="http://www.w3.org/2000/svg"
+               aria-hidden="true">
+            <path
+              d="
+                M 220 38
+                C 290 22, 370 62, 400 130
+                C 432 200, 418 290, 372 346
+                C 326 402, 246 430, 172 416
+                C 98 402, 36 352, 20 278
+                C 4 206, 40 126, 92 82
+                C 140 40, 172 52, 220 38 Z
+              "
+              fill="#F0A8B4"
+            />
+          </svg>
+
+          <!-- Logo centered in blob -->
+          <img class="hero-logo"
+               src="../assets/Logo_From_scratch.png"
+               alt="From Scratch Bakeshop &amp; Boba"
+               width="180"
+               height="150">
+        </div>
+      </div>
+
+      <!-- RIGHT: headline + CTA -->
+      <div class="hero-text">
+        <p class="hero-eyebrow">Yellowknife's bakery</p>
+
+        <h1 class="hero-h1" aria-label="From Scratch. Every day.">
+          <span class="line line-from">From</span>
+          <span class="line line-scratch">Scratch.</span>
+          <span class="line line-everyday">Every day.</span>
+        </h1>
+
+        <p class="hero-sub">
+          Japanese milk bread, Vietnamese banh&nbsp;mì, croissants, and boba —
+          baked fresh every morning by Cong and Ann at Centre&nbsp;Square&nbsp;Mall.
+        </p>
+
+        <a href="#menu" class="hero-cta">
+          What's fresh today
+          <span class="hero-cta-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ─── Product strip ─── -->
+    <section class="product-strip" id="menu" aria-label="Fresh today">
+      <div class="product-strip-inner">
+        <p class="product-strip-label">Fresh today</p>
+
+        <ul class="product-tiles" role="list">
+
+          <!-- Tile 1: Shokupan -->
+          <!-- replace with real IG product photos (Q5) -->
+          <li class="product-tile" aria-label="Shokupan — Japanese milk bread">
+            <svg width="52" height="52" viewBox="0 0 72 72" fill="none" aria-hidden="true">
+              <path d="M10 44 C10 28 20 18 36 18 C52 18 62 28 62 44 L62 54 Q62 58 58 58 L14 58 Q10 58 10 54 Z"
+                    stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M18 58 L18 52 Q18 48 22 48 L50 48 Q54 48 54 52 L54 58"
+                    stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M24 40 Q28 34 36 34 Q44 34 48 40"
+                    stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" fill="none"/>
+            </svg>
+            <span class="product-tile-label">Shokupan</span>
+          </li>
+
+          <!-- Tile 2: Boba -->
+          <!-- replace with real IG product photos (Q5) -->
+          <li class="product-tile" aria-label="Brown Sugar Boba">
+            <svg width="44" height="52" viewBox="0 0 68 80" fill="none" aria-hidden="true">
+              <line x1="34" y1="4" x2="34" y2="28" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+              <path d="M34 28 Q34 34 28 34" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <path d="M14 34 L18 68 Q18 72 34 72 Q50 72 50 68 L54 34 Z"
+                    stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 34 Q10 28 34 28 Q58 28 58 34 L14 34 Z"
+                    stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="26" cy="60" r="4" stroke="#1A1A1A" stroke-width="2"/>
+              <circle cx="34" cy="64" r="4" stroke="#1A1A1A" stroke-width="2"/>
+              <circle cx="42" cy="60" r="4" stroke="#1A1A1A" stroke-width="2"/>
+            </svg>
+            <span class="product-tile-label">Brown Sugar Boba</span>
+          </li>
+
+          <!-- Tile 3: Croissant -->
+          <!-- replace with real IG product photos (Q5) -->
+          <li class="product-tile" aria-label="Croissant">
+            <svg width="56" height="44" viewBox="0 0 80 64" fill="none" aria-hidden="true">
+              <path d="M8 48 Q14 20 32 18 Q40 16 40 32 Q40 16 48 18 Q66 20 72 48 L58 42 Q50 38 40 32 Q30 38 22 42 Z"
+                    stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M28 36 Q34 28 40 32 Q46 28 52 36"
+                    stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            </svg>
+            <span class="product-tile-label">Croissant</span>
+          </li>
+
+          <!-- Tile 4: Banh mì -->
+          <!-- replace with real IG product photos (Q5) -->
+          <li class="product-tile" aria-label="Banh Mì">
+            <svg width="60" height="38" viewBox="0 0 90 56" fill="none" aria-hidden="true">
+              <path d="M10 30 Q10 10 45 10 Q80 10 80 30 Z"
+                    stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8 32 L82 32 Q82 44 45 44 Q8 44 8 32 Z"
+                    stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M18 32 Q24 26 30 32 Q36 26 42 32 Q48 26 54 32 Q60 26 66 32 Q72 26 76 32"
+                    stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            </svg>
+            <span class="product-tile-label">Banh Mì</span>
+          </li>
+
+          <!-- Tile 5: Matcha -->
+          <!-- replace with real IG product photos (Q5) -->
+          <li class="product-tile" aria-label="Matcha Cream Doughnut">
+            <svg width="52" height="52" viewBox="0 0 72 72" fill="none" aria-hidden="true">
+              <circle cx="36" cy="36" r="22" stroke="#1A1A1A" stroke-width="2"/>
+              <circle cx="36" cy="36" r="8" stroke="#1A1A1A" stroke-width="2"/>
+              <path d="M20 28 Q28 20 36 20 Q44 20 52 28"
+                    stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+              <path d="M22 44 Q28 52 36 52 Q44 52 50 44"
+                    stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            </svg>
+            <span class="product-tile-label">Matcha Doughnut</span>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- ─── Info strip ─── -->
+    <footer class="info-strip" id="visit" aria-label="Visit us">
+      <div class="info-block">
+        <span class="info-label">Location</span>
+        <span class="info-value">Unit 3, Centre Square Mall<br>4907 Franklin Ave, Yellowknife NT</span>
+      </div>
+      <div class="info-block">
+        <span class="info-label">Hours</span>
+        <span class="info-value">Mon–Fri 10am–6pm<br>Sat–Sun 12–6pm</span>
+      </div>
+      <div class="info-block">
+        <span class="info-label">Phone</span>
+        <span class="info-value"><a href="tel:+18676869986">(867) 686-9986</a></span>
+      </div>
+      <div class="info-block">
+        <span class="info-label">Reviews</span>
+        <span class="info-value">
+          <span class="stars">
+            <span class="star-glyph" aria-hidden="true">★</span>
+            4.9
+          </span>
+          &nbsp;(~135 reviews)
+        </span>
+      </div>
+      <div class="info-block">
+        <span class="info-label">Delivery</span>
+        <span class="info-value">DoorDash · Uber Eats</span>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ─── Motion JS (vanilla, respects prefers-reduced-motion) ─── -->
+  <script>
+    (function () {
+      // Check reduced-motion preference up front
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (reduced) {
+        // Show everything immediately — no animation
+        document.querySelectorAll(
+          '.hero-eyebrow, .hero-h1 .line, .hero-sub, .hero-cta'
+        ).forEach(function(el) {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        });
+
+        document.querySelectorAll('.line-icon path, .line-icon circle, .line-icon line, .line-icon polyline, .line-icon rect').forEach(function(el) {
+          el.style.strokeDashoffset = '0';
+        });
+
+        document.querySelectorAll('.product-tile').forEach(function(el) {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        });
+
+        return; // bail — no motion
+      }
+
+      // ── 1. Blob settle → then start slow drift ──
+      var blob = document.querySelector('.blob-svg');
+      if (blob) {
+        blob.classList.add('animate-blob');
+        blob.addEventListener('animationend', function () {
+          blob.classList.remove('animate-blob');
+          blob.style.transform = 'scale(1.0)';
+          blob.style.opacity = '1';
+          blob.classList.add('drifting');
+        }, { once: true });
+      }
+
+      // ── 2. Headline + CTA staggered fade-up ──
+      var textEls = [
+        '.hero-eyebrow',
+        '.hero-h1 .line-from',
+        '.hero-h1 .line-scratch',
+        '.hero-h1 .line-everyday',
+        '.hero-sub',
+        '.hero-cta'
+      ];
+
+      textEls.forEach(function(sel, i) {
+        var el = document.querySelector(sel);
+        if (!el) return;
+        el.style.animationDelay = (80 + i * 90) + 'ms';
+        el.classList.add('fade-up');
+      });
+
+      // ── 3. Line-art icons staggered draw ──
+      var icons = document.querySelectorAll('.icon-scatter .line-icon');
+      icons.forEach(function(icon, i) {
+        var delay = 300 + i * 160; // ms, staggered after blob settles
+        setTimeout(function () {
+          icon.classList.add('draw');
+        }, delay);
+      });
+
+      // ── 4. Product tiles scroll-in (IntersectionObserver) ──
+      var tiles = document.querySelectorAll('.product-tile');
+      if ('IntersectionObserver' in window) {
+        var tileObserver = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              var tile = entry.target;
+              var idx = Array.prototype.indexOf.call(tiles, tile);
+              tile.style.transitionDelay = (idx * 65) + 'ms';
+              tile.classList.add('visible');
+              tileObserver.unobserve(tile);
+            }
+          });
+        }, { threshold: 0.15 });
+
+        tiles.forEach(function(tile) {
+          tileObserver.observe(tile);
+        });
+      } else {
+        // Fallback: show all immediately
+        tiles.forEach(function(tile) {
+          tile.classList.add('visible');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From Scratch — Hero Options (compare &amp; pick)</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<style>
+  *{box-sizing:border-box;margin:0}
+  body{font-family:var(--font-body);background:var(--brand-cream);color:var(--color-ink);line-height:1.6}
+  .top{padding:40px 24px 8px;max-width:1080px;margin:0 auto;text-align:center}
+  .eyebrow{font-family:var(--font-display);font-weight:600;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent)}
+  h1{font-family:var(--font-display);font-weight:700;font-size:2rem;margin:.3rem 0}
+  .top p{color:var(--color-muted);max-width:60ch;margin:0 auto}
+  .wrap{max-width:1080px;margin:0 auto;padding:24px}
+  .opt{background:#fff;border:1px solid #ece6e0;border-radius:24px;overflow:hidden;box-shadow:0 6px 20px rgba(26,26,26,.06);margin-bottom:36px}
+  .opt-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 22px;border-bottom:1px solid #f1ebe5;flex-wrap:wrap}
+  .opt-head .name{font-family:var(--font-display);font-weight:700;font-size:1.15rem}
+  .opt-head .desc{color:var(--color-muted);font-size:.9rem;margin-top:2px;max-width:62ch}
+  .rec{background:var(--brand-rose-soft);color:var(--brand-rose-deep);font-family:var(--font-display);font-weight:600;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:999px}
+  .open{font-family:var(--font-display);font-weight:600;font-size:.9rem;text-decoration:none;background:var(--brand-amber);color:#fff;padding:10px 18px;border-radius:999px;white-space:nowrap}
+  .open:hover{background:#ffa430}
+  .frame{position:relative;width:100%;height:620px;background:var(--brand-paper)}
+  .frame iframe{width:100%;height:100%;border:0;display:block}
+  .badge{position:absolute;top:12px;left:14px;background:rgba(26,26,26,.7);color:#fff;font-size:.72rem;padding:4px 10px;border-radius:999px;letter-spacing:.04em}
+  .foot{max-width:1080px;margin:0 auto;padding:8px 24px 60px;text-align:center;color:var(--color-muted);font-size:.9rem}
+  .foot a{color:var(--brand-amber-deep);font-weight:600;text-decoration:none}
+  @media(max-width:600px){.frame{height:520px}}
+</style>
+</head>
+<body>
+  <div class="top">
+    <span class="eyebrow">From Scratch Bakeshop &amp; Boba</span>
+    <h1>Hero options — compare &amp; pick</h1>
+    <p>Three directions for the homepage hero, all on the locked brand (rose · amber · ink · paper, Poppins + Inter, line-art motif). Scroll each preview, or open it full-screen. Tell me which one and I'll set it as the site's hero.</p>
+  </div>
+
+  <div class="wrap">
+
+    <!-- A -->
+    <section class="opt">
+      <div class="opt-head">
+        <div>
+          <div class="name">A · “The Oven Opened” <span class="rec">Recommended</span></div>
+          <div class="desc">Photo-forward / “Handmade North.” Warm full-bleed hero, logo, headline “Baked by hand. Every morning.”, 4.9★ above the fold, single amber CTA. Makes you hungry in one second.</div>
+        </div>
+        <a class="open" href="hero-a-oven-opened.html" target="_blank" rel="noopener">Open full ↗</a>
+      </div>
+      <div class="frame"><span class="badge">A · live preview</span><iframe src="hero-a-oven-opened.html" title="Hero A preview" loading="lazy"></iframe></div>
+    </section>
+
+    <!-- B -->
+    <section class="opt">
+      <div class="opt-head">
+        <div>
+          <div class="name">B · “Paper + Line”</div>
+          <div class="desc">Illustrated / design-forward. Rose blob + logo, line-art icons that draw themselves in, “From / Scratch. / Every day.” Highest design ambition (Awwwards-leaning), illustration-led — no photos needed.</div>
+        </div>
+        <a class="open" href="hero-b-paper-line.html" target="_blank" rel="noopener">Open full ↗</a>
+      </div>
+      <div class="frame"><span class="badge">B · live preview</span><iframe src="hero-b-paper-line.html" title="Hero B preview" loading="lazy"></iframe></div>
+    </section>
+
+    <!-- C -->
+    <section class="opt">
+      <div class="opt-head">
+        <div>
+          <div class="name">C · “The Daily Board”</div>
+          <div class="desc">Text-led, mobile-first, very local. Big logo, “OPEN TODAY IN YELLOWKNIFE”, hours band, tap-to-call. Lowest complexity, best for the “are you open / what do you have” walk-in.</div>
+        </div>
+        <a class="open" href="hero-c-daily-board.html" target="_blank" rel="noopener">Open full ↗</a>
+      </div>
+      <div class="frame"><span class="badge">C · live preview</span><iframe src="hero-c-daily-board.html" title="Hero C preview" loading="lazy"></iframe></div>
+    </section>
+
+  </div>
+
+  <div class="foot">
+    The full one-page mockup (using hero A by default) lives at <a href="../index.html">../index.html</a>. Pick a hero and I'll wire it into the main page.
+  </div>
+</body>
+</html>

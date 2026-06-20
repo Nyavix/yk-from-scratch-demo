@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ── SEO ────────────────────────────────────────────────────── -->
+  <title>From Scratch Bakeshop &amp; Boba — Yellowknife, NT</title>
+  <meta name="description" content="Scratch-made Japanese breads, Vietnamese banh mì, croissants, and signature bubble milk tea. Baked fresh every day in Yellowknife. Unit 3, Centre Square Mall.">
+  <meta name="keywords" content="Yellowknife bakery, Yellowknife boba, bubble tea Yellowknife, Japanese bread Yellowknife, banh mi Yellowknife, from scratch bakery">
+  <link rel="canonical" href="https://ykfromscratch.ca/">
+
+  <!-- ── Open Graph ──────────────────────────────────────────────── -->
+  <meta property="og:title" content="From Scratch Bakeshop &amp; Boba — Yellowknife, NT">
+  <meta property="og:description" content="Scratch-made Japanese breads, Vietnamese banh mì, croissants, and signature bubble milk tea. Baked fresh every day in Yellowknife.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ykfromscratch.ca/">
+  <meta property="og:image" content="assets/Logo_From_scratch.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- ── Schema markup ──────────────────────────────────────────── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Bakery",
+    "name": "From Scratch Bakeshop & Boba",
+    "description": "Scratch-made Japanese breads, Vietnamese banh mì, croissants, and signature bubble milk tea in Yellowknife, NT.",
+    "url": "https://ykfromscratch.ca",
+    "telephone": "+18676869986",
+    "email": "ykfromscratch@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Unit 3, Centre Square Mall, 4907 Franklin Ave",
+      "addressLocality": "Yellowknife",
+      "addressRegion": "NT",
+      "postalCode": "X1A 3R6",
+      "addressCountry": "CA"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "10:00",
+        "closes": "18:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Saturday","Sunday"],
+        "opens": "12:00",
+        "closes": "18:00"
+      }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "135"
+    },
+    "servesCuisine": ["Japanese", "Vietnamese", "Bakery"],
+    "priceRange": "$$",
+    "sameAs": [
+      "https://www.instagram.com/ykfromscratch/",
+      "https://www.facebook.com/p/From-Scratch-Bakeshop-Boba-61557276449106/"
+    ]
+  }
+  </script>
+
+  <!-- ── Fonts ───────────────────────────────────────────────────── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- ── Stylesheets ────────────────────────────────────────────── -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Favicon placeholder -->
+  <!-- <link rel="icon" href="assets/favicon.ico"> -->
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════════════════════
+       NAV
+  ════════════════════════════════════════════════════════════════ -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="From Scratch — home">
+        <img src="assets/Logo_From_scratch.png" alt="From Scratch Bakeshop &amp; Boba logo" width="48" height="48">
+      </a>
+      <ul class="nav-links">
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#find-us">Find Us</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="https://www.doordash.com" target="_blank" rel="noopener" class="btn btn-primary" aria-label="Order online via DoorDash">Order Online</a>
+      </div>
+      <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+
+  <!-- ════════════════════════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════════════════════════════ -->
+  <section class="hero" id="home" aria-label="Homepage hero">
+    <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
+    <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
+
+    <div class="hero-inner container">
+      <div class="hero-text">
+        <p class="hero-tagline">Yellowknife's own bakeshop &amp; boba</p>
+        <h1>Made from scratch.<br><em>Every single day.</em></h1>
+        <p class="hero-sub">Japanese breads, Vietnamese banh mì, buttery croissants, and signature bubble milk tea — baked fresh each morning at Centre Square Mall.</p>
+        <div class="hero-actions">
+          <a href="#menu" class="btn btn-primary">See the Menu</a>
+          <a href="https://www.doordash.com" target="_blank" rel="noopener" class="btn btn-outline">Order for Delivery</a>
+        </div>
+        <div class="hero-trust">
+          <span class="hero-stars" aria-label="5 stars">★★★★★</span>
+          <span class="hero-trust-text"><strong>4.9</strong> across 135 Google reviews</span>
+        </div>
+      </div>
+
+      <!-- 3D SCROLL ASSET HERE — 1200×800px, aspect-ratio 4/5 -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-visual-placeholder">
+          <!-- Replace this block with the hero product photography or 3D scroll asset -->
+          <div class="placeholder-icon">🍞</div>
+          <p>Product hero photo<br>Replace with IG photography<br>(1200 × 1500 px recommended)</p>
+        </div>
+        <!-- Floating badge: real detail, builds trust at a glance -->
+        <div class="hero-float-badge" role="img" aria-label="Opened April 2024, sold out on day one">
+          <span class="float-badge-icon">✨</span>
+          <div class="float-badge-text">
+            <div class="float-badge-title">Opened Apr 2024</div>
+            <div class="float-badge-sub">Sold out on day one</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       WHAT WE MAKE
+  ════════════════════════════════════════════════════════════════ -->
+  <section class="what-we-make" id="what-we-make" aria-labelledby="wwm-title">
+    <div class="container">
+      <div class="section-intro reveal">
+        <span class="eyebrow">Made by hand</span>
+        <h2 id="wwm-title">Bread, boba,<br>banh mì, and more.</h2>
+        <p>Everything on the menu comes from Cong's oven or Ann's hands. Nothing frozen, nothing shipped in pre-made.</p>
+      </div>
+
+      <div class="category-grid" role="list">
+
+        <article class="category-card" role="listitem">
+          <div class="category-card-img">
+            <!-- Replace with photo of Japanese milk bread / shokupan from IG -->
+            <div class="category-placeholder" aria-hidden="true">🍞</div>
+            <!-- <img src="assets/photos/breads.jpg" alt="Freshly baked Japanese milk bread and soft Asian rolls" loading="lazy"> -->
+          </div>
+          <div class="category-card-body">
+            <h3 class="category-card-title">Breads &amp; Pastries</h3>
+            <p class="category-card-desc">Japanese milk bread (shokupan), curry buns, butter rolls, almond croissants, peach danish — baked fresh every morning.</p>
+            <span class="category-card-tag">Available daily</span>
+          </div>
+        </article>
+
+        <article class="category-card" role="listitem">
+          <div class="category-card-img">
+            <!-- Replace with banh mi photo from IG -->
+            <div class="category-placeholder" aria-hidden="true">🥖</div>
+            <!-- <img src="assets/photos/banhmii.jpg" alt="Vietnamese banh mì sandwich on housemade baguette" loading="lazy"> -->
+          </div>
+          <div class="category-card-body">
+            <h3 class="category-card-title">Banh Mì</h3>
+            <p class="category-card-desc">Vietnamese banh mì on housemade baguette. Cong learned the craft in Vietnam before bringing it north. You can taste the difference.</p>
+            <span class="category-card-tag">Lunch special</span>
+          </div>
+        </article>
+
+        <article class="category-card" role="listitem">
+          <div class="category-card-img">
+            <!-- Replace with boba drink photo from IG -->
+            <div class="category-placeholder" aria-hidden="true">🧋</div>
+            <!-- <img src="assets/photos/boba.jpg" alt="Signature bubble milk tea with tapioca pearls" loading="lazy"> -->
+          </div>
+          <div class="category-card-body">
+            <h3 class="category-card-title">Bubble Milk Tea</h3>
+            <p class="category-card-desc">Brown sugar, ube matcha, taro, peach, strawberry — signature blends made with real flavours, not syrups. The boba is the real thing.</p>
+            <span class="category-card-tag">Signature drinks</span>
+          </div>
+        </article>
+
+        <article class="category-card" role="listitem">
+          <div class="category-card-img">
+            <!-- Replace with coffee / matcha latte photo from IG -->
+            <div class="category-placeholder" aria-hidden="true">☕</div>
+            <!-- <img src="assets/photos/coffee.jpg" alt="Iced matcha latte and Vietnamese iced coffee" loading="lazy"> -->
+          </div>
+          <div class="category-card-body">
+            <h3 class="category-card-title">Coffee &amp; Tea</h3>
+            <p class="category-card-desc">Vietnamese iced coffee, iced matcha latte, hot tea, eggnog latte in season — brewed with Barren Ground beans, Yellowknife's own roaster.</p>
+            <span class="category-card-tag">Open daily</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       OUR STORY
+  ════════════════════════════════════════════════════════════════ -->
+  <section class="our-story" id="story" aria-labelledby="story-title">
+    <div class="container">
+      <div class="story-inner">
+
+        <div class="story-visual reveal">
+          <div class="story-photo">
+            <!-- Replace with photo of Ann and Cong or the bakery in action -->
+            <div style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-size:4rem;opacity:.25;">🧑‍🍳</div>
+            <!-- <img src="assets/photos/team.jpg" alt="Ann and Cong at From Scratch — the couple behind the bakery" loading="lazy"> -->
+          </div>
+          <div class="story-accent-blob" aria-hidden="true"></div>
+        </div>
+
+        <div class="story-text reveal">
+          <span class="eyebrow">Our story</span>
+          <h2 id="story-title">From Vietnam to Yellowknife — from scratch.</h2>
+          <p>Cong Thanh Huynh trained as a professional baker in Vietnam and came to Yellowknife in 2021 with flour in his blood and a plan. He worked, he learned the North, and in April 2024, he and his wife Ann opened From Scratch in Centre Square Mall.</p>
+          <p>They sold out before 3pm on day one. The neighbours came back the next morning. They've been coming back ever since — for the shokupan, the banh mì, the boba, the matcha doughnuts that regulars call the best they've ever had.</p>
+          <p>None of it comes from a mix or a freezer. Every loaf, every roll, every bubble tea is made the way the name says: from scratch.</p>
+          <blockquote class="story-quote">
+            "We had a lot of support from everyone. I love it — I love the energy of everyone coming in." — Ann
+          </blockquote>
+          <span class="story-since">est. 2024 · Yellowknife, NT</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       MENU
+  ════════════════════════════════════════════════════════════════ -->
+  <section class="menu-section" id="menu" aria-labelledby="menu-title">
+    <div class="container">
+      <div class="section-intro reveal">
+        <span class="eyebrow">The menu</span>
+        <h2 id="menu-title">What's in the case today</h2>
+        <p>Menu items vary with what came out of the oven. Pre-order shokupan (whole loaf, $15) — it sells out fast.</p>
+      </div>
+
+      <nav class="menu-tabs" aria-label="Menu categories" role="tablist">
+        <button class="menu-tab active" data-tab="bakery" role="tab" aria-selected="true" aria-controls="panel-bakery">Bakery</button>
+        <button class="menu-tab" data-tab="sandwiches" role="tab" aria-selected="false" aria-controls="panel-sandwiches">Banh Mì</button>
+        <button class="menu-tab" data-tab="drinks" role="tab" aria-selected="false" aria-controls="panel-drinks">Drinks</button>
+      </nav>
+
+      <!-- BAKERY PANEL -->
+      <div class="menu-panel active" id="panel-bakery" role="tabpanel" aria-labelledby="tab-bakery">
+        <div class="menu-grid">
+          <div class="menu-card">
+            <div class="menu-card-top">
+              <div class="menu-card-name">Japanese Milk Bread (Shokupan)</div>
+              <div class="menu-card-price">$15</div>
+            </div>
+            <p class="menu-card-desc">Whole loaf, pre-order. Pillowy, slightly sweet, the kind of bread you slice thick and eat warm with butter.</p>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-top">
+              <div class="menu-card-name">Almond Croissant</div>
+              <div class="menu-card-price">Ask in store</div>
+            </div>
+            <p class="menu-card-desc">Flaky, buttery, filled with almond cream. A regular favourite — comes out early and goes quickly.</p>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-top">
+              <div class="menu-card-name">Curry Bread</div>
+              <div class="menu-card-price">Ask in store</div>
+            </div>
+            <p class="menu-card-desc">Japanese-style curry tucked inside a soft fried roll. Cong's version — warm, savoury, and genuinely addictive.</p>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-top">
+              <div class="menu-card-name">Ham &amp; Cheese Croissant</div>
+              <div class="menu-card-price">Ask in store</div>
+            </div>
+            <p class="menu-card-desc">Housemade croissant, good ham, real cheese. Simple, and exactly right.</p>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-top">
+              <div class="menu-card-name">Matcha Cream Doughnut</div>
+              <div class="menu-card-price">Ask in store</div>
+            </div>
+            <p class="menu-card-desc">"The best doughnut I've ever had." — one of 135 Google reviewers. We'll let that speak for itself.</p>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-top">
+              <div class="menu-card-name">Peach Danish &amp; Seasonal Items</div>
+              <div class="menu-card-price">Seasonal</div>
+            </div>
+            <p class="menu-card-desc">Peach danish, butter buns, raspberry-filled rolls, and whatever Cong decided to make that morning. Check Instagram for what's fresh.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- BANH MI PANEL -->
+      <div class="menu-panel" id="panel-sandwiches" role="tabpanel" aria-labelledby="tab-sandwiches">
+        <div class="menu-grid">
+          <div class="menu-card">
+            <div class="menu-card-top">
+              <div class="menu-card-name">Vietnamese Banh Mì</div>
+              <div class="menu-card-price">Ask in store</div>
+            </div>
+            <p class="menu-card-desc">The real thing, on housemade Vietnamese baguette. Cong adapted it for what's available in the North — the result is a banh mì worth coming to Yellowknife for.</p>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-top">
+              <div class="menu-card-name">Daily Specials</div>
+              <div class="menu-card-price">Varies</div>
+            </div>
+            <p class="menu-card-desc">Sandwich and lunch items change with what's fresh. Follow @ykfromscratch on Instagram for today's offerings.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- DRINKS PANEL -->
+      <div class="menu-panel" id="panel-drinks" role="tabpanel" aria-labelledby="tab-drinks">
+        <div class="menu-grid">
+          <div class="menu-card">
+            <div class="menu-card-top">
+              <div class="menu-card-name">Brown Sugar Milk Tea</div>
+              <div class="menu-card-price">Ask in store</div>
+            </div>
+            <p class="menu-card-desc">Rich, slightly caramelised, the standard by which all other boba is judged. A customer favourite from day one.</p>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-top">
+              <div class="menu-card-name">Ube Matcha Bubble Tea</div>
+              <div class="menu-card-price">Ask in store</div>
+            </div>
+            <p class="menu-card-desc">Purple ube meets earthy matcha. Visually striking, genuinely delicious. One of the more photographed drinks in the case.</p>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-top">
+              <div class="menu-card-name">Iced Matcha Latte</div>
+              <div class="menu-card-price">Ask in store</div>
+            </div>
+            <p class="menu-card-desc">Good quality matcha, good milk, over ice. Clean and not overly sweet — the way it should be.</p>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-top">
+              <div class="menu-card-name">Vietnamese Iced Coffee</div>
+              <div class="menu-card-price">Ask in store</div>
+            </div>
+            <p class="menu-card-desc">Strong drip coffee, condensed milk, over ice. Brewed with Barren Ground beans — Yellowknife-roasted.</p>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-top">
+              <div class="menu-card-name">Seasonal Lattes &amp; Teas</div>
+              <div class="menu-card-price">Varies</div>
+            </div>
+            <p class="menu-card-desc">Taro boba, peach tea, strawberry milk tea, and seasonal specials. Eggnog latte in winter. Follow Instagram for what's on.</p>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-top">
+              <div class="menu-card-name">Hot Tea &amp; Coffee</div>
+              <div class="menu-card-price">Ask in store</div>
+            </div>
+            <p class="menu-card-desc">Classic hot drinks for Yellowknife winters. Brewed with care, no rush.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="menu-note">Menu varies daily. Pre-order shokupan by calling <a href="tel:+18676869986">867-686-9986</a> or messaging on Instagram <a href="https://www.instagram.com/ykfromscratch/" target="_blank" rel="noopener">@ykfromscratch</a>.</p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       REVIEWS
+  ════════════════════════════════════════════════════════════════ -->
+  <section class="reviews-section" aria-labelledby="reviews-title">
+    <div class="reviews-blob" aria-hidden="true"></div>
+    <div class="container" style="position:relative; z-index:1;">
+      <div class="section-intro centered reveal" style="max-width:480px; margin:0 auto 0;">
+        <span class="eyebrow">What people say</span>
+        <h2 id="reviews-title">Yellowknife found us.<br>And kept coming back.</h2>
+      </div>
+
+      <div style="margin-top:32px; display:flex; justify-content:center;" class="reveal">
+        <div class="rating-badge" role="img" aria-label="4.9 stars out of 5, 135 Google reviews">
+          <span class="rating-stars" aria-hidden="true">★★★★★</span>
+          <span class="rating-number">4.9</span>
+          <span class="rating-count">/ 135 Google reviews</span>
+        </div>
+      </div>
+
+      <div class="reviews-grid" style="margin-top:40px;">
+
+        <div class="review-card">
+          <div class="review-quote-mark" aria-hidden="true">"</div>
+          <p class="review-text">The matcha cream filled doughnut was the best doughnut I've ever had. I keep coming back hoping it's available.</p>
+          <div class="review-author">Margaret A.</div>
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-quote-mark" aria-hidden="true">"</div>
+          <p class="review-text">If you ever find yourself wandering around downtown Yellowknife and craving artisan breads or boba tea, From Scratch Bakeshop and Boba is a fantastic spot.</p>
+          <div class="review-author">Noel T.</div>
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-quote-mark" aria-hidden="true">"</div>
+          <p class="review-text">The service is outstanding. They make clients feel welcome, comfortable and acknowledged. Exactly what you want from a local shop.</p>
+          <div class="review-author">Naledi N.</div>
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       FIND US
+  ════════════════════════════════════════════════════════════════ -->
+  <section class="find-us" id="find-us" aria-labelledby="find-us-title">
+    <div class="container">
+      <div class="find-us-inner">
+
+        <div>
+          <span class="eyebrow">Visit us</span>
+          <h2 id="find-us-title">Pop by Centre Square Mall.</h2>
+
+          <div class="info-block">
+            <div class="info-block-label">Address</div>
+            <div class="info-block-value">
+              Unit 3, Centre Square Mall<br>
+              4907 Franklin Ave<br>
+              Yellowknife, NT
+            </div>
+          </div>
+
+          <div class="info-block">
+            <div class="info-block-label">Hours</div>
+            <div>
+              <div class="hours-row">
+                <span class="hours-day">Monday — Friday</span>
+                <span class="hours-time">10 am – 6 pm</span>
+              </div>
+              <div class="hours-row">
+                <span class="hours-day">Saturday</span>
+                <span class="hours-time">12 pm – 6 pm</span>
+              </div>
+              <div class="hours-row">
+                <span class="hours-day">Sunday</span>
+                <span class="hours-time">12 pm – 6 pm</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-block">
+            <div class="info-block-label">Phone</div>
+            <div class="info-block-value"><a href="tel:+18676869986" style="color:var(--brand-rose);">867-686-9986</a></div>
+          </div>
+
+          <div class="info-block">
+            <div class="info-block-label">Order for delivery</div>
+            <div class="delivery-row">
+              <a href="https://www.doordash.com" target="_blank" rel="noopener" class="delivery-badge" aria-label="Order on DoorDash">
+                🚗 DoorDash
+              </a>
+              <a href="https://www.ubereats.com" target="_blank" rel="noopener" class="delivery-badge" aria-label="Order on Uber Eats">
+                🛵 Uber Eats
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <!-- Map placeholder — embed Google Maps iframe here -->
+          <div class="map-placeholder" role="img" aria-label="Map showing From Scratch location at Centre Square Mall, 4907 Franklin Ave, Yellowknife">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="20" cy="16" r="8" stroke="currentColor" stroke-width="2"/>
+              <circle cx="20" cy="16" r="3" fill="currentColor"/>
+              <path d="M20 24C20 24 8 31 8 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M20 24C20 24 32 31 32 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <div>
+              <!-- Replace with: <iframe src="https://www.google.com/maps/embed?pb=..." ...></iframe> -->
+              Unit 3, Centre Square Mall<br>
+              4907 Franklin Ave, Yellowknife NT<br>
+              <br>
+              <small>Embed Google Maps iframe here</small>
+            </div>
+          </div>
+
+          <p style="margin-top:16px; font-size:14px; color:rgba(252,252,252,.5); line-height:1.6;">
+            We're in Centre Square Mall on Franklin Ave — the main shopping block in downtown Yellowknife. Parking available outside the mall.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ════════════════════════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="assets/Logo_From_scratch.png" alt="From Scratch Bakeshop &amp; Boba" width="44" height="44">
+      </div>
+      <div class="footer-text">
+        &copy; 2024 From Scratch Bakeshop &amp; Boba &nbsp;·&nbsp;
+        <a href="tel:+18676869986">867-686-9986</a> &nbsp;·&nbsp;
+        <a href="mailto:ykfromscratch@gmail.com">ykfromscratch@gmail.com</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/ykfromscratch/" target="_blank" rel="noopener" aria-label="From Scratch on Instagram">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/p/From-Scratch-Bakeshop-Boba-61557276449106/" target="_blank" rel="noopener" aria-label="From Scratch on Facebook">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── GSAP (optional — animations gracefully degrade without it) ── -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+
+</body>
+</html>

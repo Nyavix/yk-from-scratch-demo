@@ -1,0 +1,55 @@
+/* From Scratch Bakeshop & Boba — brand tokens (CSS custom properties)
+   Palette sampled from the logo, 2026-06-20. Namespace: palette = --brand-*, semantic roles = --color-*.
+   Drop into any deliverable (reports, site) and reference the variables. */
+:root {
+  /* palette */
+  --brand-ink:        #1A1A1A;
+  --brand-paper:      #FCFCFC;
+  --brand-cream:      #FAF4EE;
+  --brand-rose:       #F0A8B4;
+  --brand-rose-soft:  #FBE3E7;
+  --brand-rose-deep:  #D98292;
+  --brand-amber:      #F09018;
+  --brand-amber-soft: #FCE4C4;
+  --brand-amber-deep: #C9740F;
+  --brand-ink-60:     #5C5C5C;
+
+  /* semantic roles */
+  --color-bg:           var(--brand-paper);
+  --color-surface:      var(--brand-cream);
+  --color-ink:          var(--brand-ink);
+  --color-muted:        var(--brand-ink-60);
+  --color-accent:       var(--brand-rose);
+  --color-accent-soft:  var(--brand-rose-soft);
+  --color-highlight:    var(--brand-amber);
+  --color-on-highlight: var(--brand-paper);
+
+  /* type families (DRAFT — confirm with client) */
+  --font-display: "Poppins", "Quicksand", system-ui, sans-serif;
+  --font-body:    "Inter", system-ui, sans-serif;
+  --font-accent:  "Caveat", cursive; /* hand accent — use almost never */
+
+  /* type scale (16px base) — role: size / line-height / weight */
+  --text-display: 3rem;     --leading-display: 1.05; --weight-display: 700;
+  --text-h2:      2rem;     --leading-h2:      1.15; --weight-h2:      600;
+  --text-h3:      1.375rem; --leading-h3:      1.25; --weight-h3:      600;
+  --text-body-lg: 1.125rem; --leading-body:    1.6;  --weight-body:    400;
+  --text-body:    1rem;
+  --text-caption: 0.875rem; --leading-caption: 1.5;
+  --text-label:   0.75rem;  --leading-label:   1;    --tracking-label: 0.12em;
+
+  /* spacing scale (4px base) */
+  --space-1: 0.25rem;  --space-2: 0.5rem;  --space-3: 0.75rem; --space-4: 1rem;
+  --space-6: 1.5rem;   --space-8: 2rem;    --space-12: 3rem;   --space-16: 4rem;
+  --space-24: 6rem;
+
+  /* shape */
+  --radius: 14px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  /* elevation (soft, warm — handmade, never harsh) */
+  --shadow-sm: 0 1px 2px rgba(26, 26, 26, 0.06);
+  --shadow-md: 0 6px 20px rgba(26, 26, 26, 0.08);
+  --shadow-rose: 0 10px 30px rgba(217, 130, 146, 0.18);
+}
