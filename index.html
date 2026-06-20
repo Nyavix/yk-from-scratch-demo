@@ -36,7 +36,26 @@
   .nav nav{display:flex;align-items:center;gap:28px}
   .nav nav a{font-size:.95rem;font-weight:500;text-decoration:none;opacity:.85}
   .nav nav a:hover{opacity:1}
-  @media(max-width:760px){.nav nav .lnk{display:none}}
+  /* Burger toggle */
+  .burger{display:none;background:none;border:0;cursor:pointer;padding:6px;margin-left:8px;position:relative;width:32px;height:32px;flex-shrink:0}
+  .burger span{display:block;width:22px;height:2px;background:var(--color-ink);border-radius:2px;position:absolute;left:5px;transition:transform .25s ease,opacity .15s ease}
+  .burger span:nth-child(1){top:8px}
+  .burger span:nth-child(2){top:15px}
+  .burger span:nth-child(3){top:22px}
+  .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+  /* Mobile nav drawer */
+  @media(max-width:760px){
+    .burger{display:block}
+    .nav nav .lnk{display:none}
+    .nav nav.open .lnk{display:block}
+    .nav nav{position:relative}
+    .nav nav.open{position:fixed;inset:72px 0 0 0;background:rgba(252,252,252,.97);backdrop-filter:blur(12px);flex-direction:column;justify-content:flex-start;padding:40px 24px;gap:24px;z-index:49}
+    .nav nav.open .lnk{font-size:1.3rem;font-weight:600}
+    .nav nav.open .btn{width:100%;justify-content:center;font-size:1.1rem;padding:16px 24px}
+  }
 
   /* ===== HERO + DIAGONAL LINE-ART WALLPAPER ===== */
   .hero{position:relative;min-height:94vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:120px 24px 64px;
@@ -144,11 +163,12 @@
 <header class="nav" id="nav">
   <div class="wrap">
     <a class="brand" href="#top"><img src="assets/Logo_From_scratch.png" alt="From Scratch logo"> From Scratch</a>
-    <nav>
+    <nav id="mainnav">
       <a class="lnk" href="#menu">Menu</a>
       <a class="lnk" href="#story">Story</a>
       <a class="lnk" href="#visit">Visit</a>
       <a class="btn btn-amber" href="#order">Order</a>
+      <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </nav>
   </div>
 </header>
@@ -287,6 +307,17 @@
   // ---- nav fill on scroll ----
   var nav=document.getElementById('nav');
   addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>24);},{passive:true});
+
+  // ---- burger menu ----
+  var burger=document.getElementById('burger'), mainnav=document.getElementById('mainnav');
+  burger.addEventListener('click',function(){
+    var open=mainnav.classList.toggle('open');
+    burger.classList.toggle('open',open);
+    burger.setAttribute('aria-expanded',open);
+  });
+  mainnav.addEventListener('click',function(e){
+    if(e.target.tagName==='A'){mainnav.classList.remove('open');burger.classList.remove('open');burger.setAttribute('aria-expanded','false');}
+  });
 
   // ---- scroll reveal ----
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});
